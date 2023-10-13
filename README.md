@@ -1,14 +1,23 @@
-# A Parallel Combinatorial Algorithm for Approximating the Optimal Transport
+# A Combinatorial Algorithm for Approximating the Optimal Transport in the Parallel and MPC Settings
 
-This repository contains the implementation of parallel algorithm in section 4 from our paper and experiment code for the section 5 our paper.
+This repository contains the implementation of our algorithms from our paper [OpenReview](https://openreview.net/forum?id=2izFpGERjU) and the experiment code.
 
-This repository contains three parts: 
+Optimal Transport is a popular distance metric for measuring similarity between distributions. Exact and approximate combinatorial algorithms for computing the optimal transport distance are hard to parallelize. This has motivated the development of numerical solvers (e.g. Sinkhorn method) that can exploit GPU parallelism and produce approximate solutions.
 
-1. Implementation of transport and assignment algorithm (section 4): `transport.py`, `matching.py`
+We introduce the first parallel combinatorial algorithm to find an additive $\varepsilon$-approximation of the OT distance. The parallel complexity of our algorithm is $O(\log(n)/ \varepsilon^2)$ where $n$ is the total support size for the input distributions. In Massive Parallel Computation (MPC) frameworks such as Hadoop and MapReduce, our algorithm computes an $\varepsilon$-approximate transport plan in $O(\log (\log (n/\varepsilon))/\varepsilon^2)$ rounds with $O(n/\varepsilon)$ space per machine; all prior algorithms in the MPC framework take $\Omega(\log n)$ rounds. 
+We also provide a GPU-friendly matrix-based interpretation of our algorithm where each step of the algorithm is row or column manipulation of the matrix. Experiments suggest that our combinatorial algorithm is faster than the state-of-the-art approximate solvers in the GPU, especially for higher values of $n$. 
+
+<p align="center" width="100%">
+    <img src="figures/fig1.png"> 
+</p>
+
+Current directory contains three parts: 
+
+1. Implementation of parallel transport and assignment algorithm (section 4): `transport.py`, `matching.py`
 2. Experiments compare our method and Sinkhorn (section 5): `plgpu_vs_sinkorn_bench.py`,`plgpu_vs_sinkorn_bench_rev.py`
 3. Experiments compare our method and DROT (Appendix C.2): `plgpu_vs_drot_bench_step1.py`,`plgpu_vs_drot_bench_step2.py`
 
-### Dependencies
+## Dependencies
 
 To use our algorithm or reproduce our experiments, simply install the following dependencies in your python environment and run the code.
 
@@ -26,11 +35,12 @@ Reproducing our experiments requires:
 - [scikit-learn](https://scikit-learn.org/stable/install.html) v0.24.2
 - [pybind11](https://pybind11.readthedocs.io/en/stable/installing.html) v2.7.1
 
-### Datasets
+## Datasets
 
-To run the experiments in this repository, you need to download datasets in the anonymized link [here](https://osf.io/njvcb/?view_only=912f7fffa9564926b15988d2ea3c1bdd). 
+To run the experiments in this repository, please download datasets in the anonymized link [here](https://osf.io/njvcb/?view_only=912f7fffa9564926b15988d2ea3c1bdd). 
 And also download the glove embedding file from [here](https://nlp.stanford.edu/projects/glove/).
 
+## Experiments Reproduction
 ### To Run Experiments Comparing with Sinkhorn
 Synthetic Data OT
 
