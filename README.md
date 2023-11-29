@@ -40,6 +40,19 @@ Reproducing our experiments requires:
 To run the experiments in this repository, please download datasets in the anonymized link [here](https://osf.io/njvcb/?view_only=912f7fffa9564926b15988d2ea3c1bdd). 
 And also download the glove embedding file from [here](https://nlp.stanford.edu/projects/glove/).
 
+## Citation
+If you find this work helpful, please consider citing our paper:
+
+```
+@inproceedings{lahn2023combinatorial,
+  title={A Combinatorial Algorithm for Approximating the Optimal Transport in the Parallel and MPC Settings},
+  author={Lahn, Nathaniel and Raghvendra, Sharath and Zhang, Kaiyi},
+  booktitle={Thirty-seventh Conference on Neural Information Processing Systems},
+  year={2023}
+}
+```
+
+
 ## Experiments Reproduction
 ### To Run Experiments Comparing with Sinkhorn
 Synthetic Data OT
